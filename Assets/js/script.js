@@ -10,10 +10,14 @@ var symbols = ["!","@","#","$","%","&","+","/"];
 function generatePassword() {
   var numOfChar = Number(prompt ("pick the amount of characters 8 thru 128."));
   if (numOfChar >= 8 && numOfChar <= 128) { 
-    var useLowerCase = prompt ("do you want lowercase?") !== null;
-    var useUpperCase = prompt ("do you want uppercase?") !== null;
-    var useNumbers = prompt ("do you want numbers?") !== null;
-    var useSymbols = prompt ("do you want symbols?") !== null;
+    var useLowerCase = confirm ("do you want lowercase?");
+    var useUpperCase = confirm ("do you want uppercase?");
+    var useNumbers = confirm ("do you want numbers?");
+    var useSymbols = confirm ("do you want symbols?");
+    if (!useLowerCase && !useUpperCase && !useNumbers && !useSymbols) {
+      alert ("use must pick at least one character.")
+      return;
+    } 
     var allChoices = []
     if (useLowerCase) {
       allChoices.push(...lowerCase);
@@ -28,6 +32,13 @@ function generatePassword() {
       allChoices.push(...symbols);
     }
     console.log(allChoices)
+    var password = []
+    for (let i = 0; i < numOfChar; i++) {
+      var index = Math.floor(Math.random() * allChoices.length);
+      var character = allChoices [index]
+      password.push(character)
+    }
+    return password.join("")
   } else {
     alert("the number " + numOfChar + " is not 8 thru 128");
     generatePassword();
@@ -63,23 +74,23 @@ generateBtn.addEventListener("click", writePassword);
 // !Confirm whether user wants to use each of the character sets in the arrays
 
 
-// CHOICE: Push all chosen arrays into a single mega-array OR keep them in separate arrays (I would recommend the first one)
+// !CHOICE: Push all chosen arrays into a single mega-array OR keep them in separate arrays (I would recommend the first one)
 
 
-// Need a function to generate a random character from the chosen array(s)
-  // Math.floor(Math.random() * array.length)
+// !Need a function to generate a random character from the chosen array(s)
+  // !Math.floor(Math.random() * array.length)
 
 
-// Add the chosen random character to an array or string
+// !Add the chosen random character to an array or string
 
 
-// Repeat generating random characters until the password is the chosen length
+// !Repeat generating random characters until the password is the chosen length
 
 
-// Need a variable to store the user's choice for password length
+// !Need a variable to store the user's choice for password length
 
 
-// If storing random characters in an array, join them into a string
+// !If storing random characters in an array, join them into a string
 
 
-// Make use of the provided code to print the password to the page
+// !Make use of the provided code to print the password to the page
